@@ -1,0 +1,28 @@
+name: Coreio
+options:
+  bundleIdPrefix: ai.Coreio
+  deploymentTarget:
+    iOS: "16.0"
+  xcodeVersion: "15.0"
+
+targets:
+  Coreio:
+    type: application
+    platform: iOS
+    bundleId: ai.Coreio.app
+    sources:
+      - path: Coreio
+        excludes:
+          - Info.plist
+    info:
+      path: Coreio/Info.plist
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: ai.Coreio.app
+        PRODUCT_NAME: Coreio
+        MARKETING_VERSION: "1.0"
+        CURRENT_PROJECT_VERSION: "1"
+        INFOPLIST_FILE: Coreio/Info.plist
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        SWIFT_VERSION: "5.0"
+        TARGETED_DEVICE_FAMILY: "1,2"

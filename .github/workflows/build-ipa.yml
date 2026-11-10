@@ -1,69 +1,75 @@
 name: Build Coreio IPA
 
 on:
-  workflow_dispatch:
   push:
-    branches: [ main, master ]
+    branches: [main, master]
+  workflow_dispatch:
 
 permissions:
   contents: write
 
 jobs:
   build:
-    runs-on: macos-15
+
+    name: Build unsigned IPA on macOS runner
+    runs-on: macos-14
+    timeout-minutes: 30
+
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v4
 
-      - name: Show toolchain
-        run: |
-          xcodebuild -version
-          xcode-select -p
+      - name: Show Xcode version
+        run: xcodebuild -version
 
-      - name: Build unsigned
+      - name: Install XcodeGen
+        run: brew install xcodegen
+
+      - name: Generate Xcode project
+        run: xcodegen
+
+      - name: Build (code signing disabled)
         run: |
-          set -e
-          PROJ=$(find . -maxdepth 4 -name "Coreio.xcodeproj" | head -1)
-          echo "project = $PROJ"
-          [ -n "$PROJ" ] || { echo "找不到 Coreio.xcodeproj"; exit 1; }
           xcodebuild \
-            -project "$PROJ" \
-            -target Coreio \
-            -sdk iphoneos \
+            -project Coreio.xcodeproj \
+            -scheme Coreio \
             -configuration Release \
-            -destination "generic/platform=iOS" \
+            -sdk iphoneos \
+            -derivedDataPath build/dd \
             CODE_SIGNING_ALLOWED=NO \
-            CODE_SIGNING_REQUIRED=NO \
-            CODE_SIGN_IDENTITY="" \
-            CONFIGURATION_BUILD_DIR="$PWD/out" \
             build
 
-      - name: Package ipa
+      - name: Package IPA
         run: |
-          set -e
-          mkdir -p dist/Payload
-          cp -R out/Coreio.app dist/Payload/
-          cd dist
-          zip -qr Coreio.ipa Payload
-          ls -lh Coreio.ipa
+          set -euo pipefail
+          APP_PATH="$(find build/dd/Build/Products/Release-iphoneos -maxdepth 1 -name 'Coreio.app' | head -n1)"
+          if [ -z "$APP_PATH" ]; then
+            echo "Coreio.app not found" >&2
+            exit 1
+          fi
+          rm -rf build/ipa
+          mkdir -p build/ipa/Payload
+          cp -R "$APP_PATH" build/ipa/Payload/
+          (cd build/ipa && zip -r "../../Coreio-unsigned.ipa" Payload)
 
-      - name: Upload ipa artifact
+      - name: Upload IPA artifact
         uses: actions/upload-artifact@v4
         with:
           name: Coreio-ipa
-          path: dist/Coreio.ipa
+          path: Coreio-unsigned.ipa
+          retention-days: 7
 
-      - name: Publish ipa to public branch
+      - name: Publish IPA to public branch
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          set -e
+          set -euo pipefail
           mkdir -p /tmp/pub
-          cp dist/Coreio.ipa /tmp/pub/
+          cp Coreio-unsigned.ipa /tmp/pub/Coreio.ipa
           cd /tmp/pub
           git init -q
           git checkout -q -b ipa
           git add Coreio.ipa
-          git -c user.name="coreio-bot" -c user.email="bot@users.noreply.github.com" \
-            commit -q -m "coreio ipa $(date -u +%Y%m%d-%H%M%S)"
+          git -c user.name="coreio-bot" -c user.email="bot@users.noreply.github.com" commit -q -m "coreio ipa $(date -u +%Y%m%d-%H%M%S)"
           git push -q -f "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" ipa
           echo "https://raw.githubusercontent.com/${GITHUB_REPOSITORY}/ipa/Coreio.ipa"
