@@ -5,6 +5,9 @@ on:
   push:
     branches: [ main, master ]
 
+permissions:
+  contents: write
+
 jobs:
   build:
     runs-on: macos-15
@@ -37,15 +40,30 @@ jobs:
       - name: Package ipa
         run: |
           set -e
-          ls -la out
           mkdir -p dist/Payload
           cp -R out/Coreio.app dist/Payload/
           cd dist
           zip -qr Coreio.ipa Payload
           ls -lh Coreio.ipa
 
-      - name: Upload ipa
+      - name: Upload ipa artifact
         uses: actions/upload-artifact@v4
         with:
           name: Coreio-ipa
           path: dist/Coreio.ipa
+
+      - name: Publish ipa to public branch
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -e
+          mkdir -p /tmp/pub
+          cp dist/Coreio.ipa /tmp/pub/
+          cd /tmp/pub
+          git init -q
+          git checkout -q -b ipa
+          git add Coreio.ipa
+          git -c user.name="coreio-bot" -c user.email="bot@users.noreply.github.com" \
+            commit -q -m "coreio ipa $(date -u +%Y%m%d-%H%M%S)"
+          git push -q -f "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" ipa
+          echo "https://raw.githubusercontent.com/${GITHUB_REPOSITORY}/ipa/Coreio.ipa"
