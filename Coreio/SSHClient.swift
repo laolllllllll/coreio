@@ -118,7 +118,7 @@ enum SSHRunner {
             throw SSHError.spawnFailed(-2)
         }
 
-        var actions = posix_spawn_file_actions_t()
+        var actions: posix_spawn_file_actions_t?
         posix_spawn_file_actions_init(&actions)
 
         posix_spawn_file_actions_adddup2(&actions, outFds[1], STDOUT_FILENO)
