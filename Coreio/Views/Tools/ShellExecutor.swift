@@ -112,28 +112,60 @@ final class ShellExecutor: ObservableObject {
     }
 
     private static func runShell(_ command: String) throws -> String {
-        let task = Process()
-        task.executableURL = URL(fileURLWithPath: "/bin/sh")
-        task.arguments = ["-c", command]
+        // iOS 上不存在 Process(NSTask)，改用 posix_spawn 启动 /bin/sh
+        var fds: [Int32] = [0, 0]
+        guard pipe(&fds) == 0 else { throw ShellError.spawnFailed("pipe 创建失败") }
 
-        let pipe = Pipe()
-        task.standardOutput = pipe
-        task.standardError = pipe
+        var actions: posix_spawn_file_actions_t?
+        posix_spawn_file_actions_init(&actions)
+        posix_spawn_file_actions_adddup2(&actions, fds[1], STDOUT_FILENO)
+        posix_spawn_file_actions_adddup2(&actions, fds[1], STDERR_FILENO)
+        posix_spawn_file_actions_addclose(&actions, fds[0])
+        posix_spawn_file_actions_addclose(&actions, fds[1])
 
-        do {
-            try task.run()
-        } catch {
-            throw ShellError.spawnFailed(error.localizedDescription)
+        var argv: [UnsafeMutablePointer<CChar>?] = [strdup("/bin/sh"), strdup("-c"), strdup(command), nil]
+        var envp: [UnsafeMutablePointer<CChar>?] = [
+            strdup("PATH=/var/jb/usr/bin:/var/jb/sbin:/var/jb/bin:/usr/bin:/bin:/usr/sbin:/sbin"),
+            strdup("HOME=/var/mobile"),
+            nil
+        ]
+
+        var pid: pid_t = 0
+        let spawned = posix_spawn(&pid, "/bin/sh", &actions, nil, &argv, &envp)
+        posix_spawn_file_actions_destroy(&actions)
+        argv.forEach { if let p = $0 { free(p) } }
+        envp.forEach { if let p = $0 { free(p) } }
+
+        close(fds[1])
+        guard spawned == 0, pid > 0 else {
+            close(fds[0])
+            throw ShellError.spawnFailed("posix_spawn 返回 \(spawned)")
         }
 
-        let data = pipe.fileHandleForReading.readDataToEndOfFile()
-        task.waitUntilExit()
-
-        let output = String(data: data, encoding: .utf8) ?? ""
-        if task.terminationStatus != 0 && output.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
-            throw ShellError.nonZeroExit(Int(task.terminationStatus))
+        var output = ""
+        var buf = [UInt8](repeating: 0, count: 4096)
+        while true {
+            var n = 0
+            buf.withUnsafeMutableBytes { raw in
+                n = Int(read(fds[0], raw.baseAddress, 4096))
+            }
+            if n <= 0 { break }
+            if let chunk = String(bytes: buf[0..<n], encoding: .utf8) {
+                output += chunk
+            } else if let chunk = String(bytes: buf[0..<n], encoding: .isoLatin1) {
+                output += chunk
+            }
         }
-        return output
+        close(fds[0])
+
+        var status: Int32 = 0
+        waitpid(pid, &status, 0)
+        let exitCode = (status >> 8) & 0xFF
+        let trimmed = output.trimmingCharacters(in: .whitespacesAndNewlines)
+        if exitCode != 0 && trimmed.isEmpty {
+            throw ShellError.nonZeroExit(Int(exitCode))
+        }
+        return trimmed.isEmpty ? "(无输出)" : trimmed
     }
 
     func append(_ line: ShellLine) {
