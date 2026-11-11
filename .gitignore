@@ -1,0 +1,15 @@
+# Xcode / build
+build/
+DerivedData/
+*.ipa
+*.xcarchive
+xcuserdata/
+*.xcworkspace/xcuserdata/
+.swiftpm/
+.buildcache/
+
+# macOS
+.DS_Store
+
+# Local
+*.log

@@ -1,0 +1,417 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		000000000000000000100004 /* PayFlowApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000100003 /* PayFlowApp.swift */; };
+		00000000000000000010000A /* ChatItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000100009 /* ChatItem.swift */; };
+		00000000000000000010000C /* ChatStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00000000000000000010000B /* ChatStore.swift */; };
+		00000000000000000010000E /* PayTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00000000000000000010000D /* PayTarget.swift */; };
+		000000000000000000100011 /* AvatarStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000100010 /* AvatarStore.swift */; };
+		000000000000000000100013 /* Color+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000100012 /* Color+Hex.swift */; };
+		000000000000000000100015 /* DemoTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000100014 /* DemoTheme.swift */; };
+		000000000000000000100017 /* QRCodeImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000100016 /* QRCodeImage.swift */; };
+		000000000000000000100019 /* QRScannerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000100018 /* QRScannerController.swift */; };
+		00000000000000000010001C /* AboutDemoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00000000000000000010001B /* AboutDemoView.swift */; };
+		00000000000000000010001E /* AvatarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00000000000000000010001D /* AvatarView.swift */; };
+		000000000000000000100020 /* CameraPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00000000000000000010001F /* CameraPreview.swift */; };
+		000000000000000000100022 /* ChatEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000100021 /* ChatEditorView.swift */; };
+		000000000000000000100024 /* ChatRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000100023 /* ChatRow.swift */; };
+		000000000000000000100026 /* DemoBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000100025 /* DemoBanner.swift */; };
+		000000000000000000100028 /* DemoQRCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000100027 /* DemoQRCodeView.swift */; };
+		00000000000000000010002A /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000100029 /* HomeView.swift */; };
+		00000000000000000010002C /* PaymentFlowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00000000000000000010002B /* PaymentFlowView.swift */; };
+		00000000000000000010002E /* PaymentKeypad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00000000000000000010002D /* PaymentKeypad.swift */; };
+		000000000000000000100030 /* ScannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00000000000000000010002F /* ScannerView.swift */; };
+		000000000000000000100032 /* SuccessCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000100031 /* SuccessCard.swift */; };
+		000000000000000000100006 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 000000000000000000100005 /* Assets.xcassets */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		000000000000000000100003 /* PayFlowApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayFlowApp.swift; sourceTree = "<group>"; };
+		000000000000000000100005 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		000000000000000000100007 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		000000000000000000100009 /* ChatItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatItem.swift; sourceTree = "<group>"; };
+		00000000000000000010000B /* ChatStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatStore.swift; sourceTree = "<group>"; };
+		00000000000000000010000D /* PayTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayTarget.swift; sourceTree = "<group>"; };
+		000000000000000000100010 /* AvatarStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarStore.swift; sourceTree = "<group>"; };
+		000000000000000000100012 /* Color+Hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Hex.swift"; sourceTree = "<group>"; };
+		000000000000000000100014 /* DemoTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoTheme.swift; sourceTree = "<group>"; };
+		000000000000000000100016 /* QRCodeImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeImage.swift; sourceTree = "<group>"; };
+		000000000000000000100018 /* QRScannerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRScannerController.swift; sourceTree = "<group>"; };
+		00000000000000000010001B /* AboutDemoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutDemoView.swift; sourceTree = "<group>"; };
+		00000000000000000010001D /* AvatarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarView.swift; sourceTree = "<group>"; };
+		00000000000000000010001F /* CameraPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraPreview.swift; sourceTree = "<group>"; };
+		000000000000000000100021 /* ChatEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatEditorView.swift; sourceTree = "<group>"; };
+		000000000000000000100023 /* ChatRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRow.swift; sourceTree = "<group>"; };
+		000000000000000000100025 /* DemoBanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoBanner.swift; sourceTree = "<group>"; };
+		000000000000000000100027 /* DemoQRCodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoQRCodeView.swift; sourceTree = "<group>"; };
+		000000000000000000100029 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		00000000000000000010002B /* PaymentFlowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentFlowView.swift; sourceTree = "<group>"; };
+		00000000000000000010002D /* PaymentKeypad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentKeypad.swift; sourceTree = "<group>"; };
+		00000000000000000010002F /* ScannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerView.swift; sourceTree = "<group>"; };
+		000000000000000000100031 /* SuccessCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuccessCard.swift; sourceTree = "<group>"; };
+		000000000000000000100034 /* PayFlowDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PayFlowDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		000000000000000000100039 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		000000000000000000100035 = {
+			isa = PBXGroup;
+			children = (
+				000000000000000000100001 /* PayFlowDemo */,
+				000000000000000000100033 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		000000000000000000100001 /* PayFlowDemo */ = {
+			isa = PBXGroup;
+			children = (
+				000000000000000000100002 /* App */,
+				000000000000000000100005 /* Assets.xcassets */,
+				000000000000000000100007 /* Info.plist */,
+				000000000000000000100008 /* Models */,
+				00000000000000000010000F /* Support */,
+				00000000000000000010001A /* Views */,
+			);
+			path = PayFlowDemo;
+			sourceTree = "<group>";
+		};
+		000000000000000000100002 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				000000000000000000100003 /* PayFlowApp.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		000000000000000000100008 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				000000000000000000100009 /* ChatItem.swift */,
+				00000000000000000010000B /* ChatStore.swift */,
+				00000000000000000010000D /* PayTarget.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		00000000000000000010000F /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				000000000000000000100010 /* AvatarStore.swift */,
+				000000000000000000100012 /* Color+Hex.swift */,
+				000000000000000000100014 /* DemoTheme.swift */,
+				000000000000000000100016 /* QRCodeImage.swift */,
+				000000000000000000100018 /* QRScannerController.swift */,
+			);
+			path = Support;
+			sourceTree = "<group>";
+		};
+		00000000000000000010001A /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				00000000000000000010001B /* AboutDemoView.swift */,
+				00000000000000000010001D /* AvatarView.swift */,
+				00000000000000000010001F /* CameraPreview.swift */,
+				000000000000000000100021 /* ChatEditorView.swift */,
+				000000000000000000100023 /* ChatRow.swift */,
+				000000000000000000100025 /* DemoBanner.swift */,
+				000000000000000000100027 /* DemoQRCodeView.swift */,
+				000000000000000000100029 /* HomeView.swift */,
+				00000000000000000010002B /* PaymentFlowView.swift */,
+				00000000000000000010002D /* PaymentKeypad.swift */,
+				00000000000000000010002F /* ScannerView.swift */,
+				000000000000000000100031 /* SuccessCard.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		000000000000000000100033 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				000000000000000000100034 /* PayFlowDemo.app */,
+			);
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		000000000000000000100036 /* PayFlowDemo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 00000000000000000010003B /* Build configuration list for PBXNativeTarget "PayFlowDemo" */;
+			buildPhases = (
+				000000000000000000100038 /* Sources */,
+				000000000000000000100039 /* Frameworks */,
+				00000000000000000010003A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PayFlowDemo;
+			productName = PayFlowDemo;
+			productReference = 000000000000000000100034 /* PayFlowDemo.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		000000000000000000100037 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1500;
+				LastUpgradeCheck = 1500;
+				TargetAttributes = {
+					000000000000000000100036 = {
+						CreatedOnToolsVersion = 15.0;
+					};
+				};
+			};
+			buildConfigurationList = 00000000000000000010003C /* Build configuration list for PBXProject "PayFlowDemo" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+				"zh-Hans",
+			);
+			mainGroup = 000000000000000000100035;
+			productRefGroup = 000000000000000000100033 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				000000000000000000100036 /* PayFlowDemo */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		00000000000000000010003A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				000000000000000000100006 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		000000000000000000100038 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				000000000000000000100004 /* PayFlowApp.swift in Sources */,
+				00000000000000000010000A /* ChatItem.swift in Sources */,
+				00000000000000000010000C /* ChatStore.swift in Sources */,
+				00000000000000000010000E /* PayTarget.swift in Sources */,
+				000000000000000000100011 /* AvatarStore.swift in Sources */,
+				000000000000000000100013 /* Color+Hex.swift in Sources */,
+				000000000000000000100015 /* DemoTheme.swift in Sources */,
+				000000000000000000100017 /* QRCodeImage.swift in Sources */,
+				000000000000000000100019 /* QRScannerController.swift in Sources */,
+				00000000000000000010001C /* AboutDemoView.swift in Sources */,
+				00000000000000000010001E /* AvatarView.swift in Sources */,
+				000000000000000000100020 /* CameraPreview.swift in Sources */,
+				000000000000000000100022 /* ChatEditorView.swift in Sources */,
+				000000000000000000100024 /* ChatRow.swift in Sources */,
+				000000000000000000100026 /* DemoBanner.swift in Sources */,
+				000000000000000000100028 /* DemoQRCodeView.swift in Sources */,
+				00000000000000000010002A /* HomeView.swift in Sources */,
+				00000000000000000010002C /* PaymentFlowView.swift in Sources */,
+				00000000000000000010002E /* PaymentKeypad.swift in Sources */,
+				000000000000000000100030 /* ScannerView.swift in Sources */,
+				000000000000000000100032 /* SuccessCard.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		00000000000000000010003F /* Debug */ = {
+			isa = XCBuildConfiguration;
+				buildSettings = {
+					ALWAYS_SEARCH_USER_PATHS = NO;
+					CLANG_ANALYZER_NONNULL = YES;
+					CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+					CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+					CLANG_ENABLE_MODULES = YES;
+					CLANG_ENABLE_OBJC_ARC = YES;
+					CLANG_ENABLE_OBJC_WEAK = YES;
+					CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+					CLANG_WARN_BOOL_CONVERSION = YES;
+					CLANG_WARN_COMMA = YES;
+					CLANG_WARN_CONSTANT_CONVERSION = YES;
+					CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+					CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+					CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+					CLANG_WARN_EMPTY_BODY = YES;
+					CLANG_WARN_ENUM_CONVERSION = YES;
+					CLANG_WARN_INFINITE_RECURSION = YES;
+					CLANG_WARN_INT_CONVERSION = YES;
+					CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+					CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+					CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+					CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+					CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+					CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+					CLANG_WARN_STRICT_PROTOTYPES = YES;
+					CLANG_WARN_SUSPICIOUS_MOVE = YES;
+					CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+					CLANG_WARN_UNREACHABLE_CODE = YES;
+					CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+					COPY_PHASE_STRIP = NO;
+					DEBUG_INFORMATION_FORMAT = dwarf;
+					ENABLE_STRICT_OBJC_MSGSEND = YES;
+					ENABLE_TESTABILITY = YES;
+					ENABLE_USER_SCRIPT_SANDBOXING = YES;
+					GCC_C_LANGUAGE_STANDARD = gnu17;
+					GCC_DYNAMIC_NO_PIC = NO;
+					GCC_NO_COMMON_BLOCKS = YES;
+					GCC_OPTIMIZATION_LEVEL = 0;
+					GCC_PREPROCESSOR_DEFINITIONS = ("DEBUG=1", "$(inherited)");
+					IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+					MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+					MTL_FAST_MATH = YES;
+					ONLY_ACTIVE_ARCH = YES;
+					SDKROOT = iphoneos;
+					SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+					SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+					SWIFT_VERSION = 5.0;
+				};
+			name = Debug;
+		};
+		000000000000000000100040 /* Release */ = {
+			isa = XCBuildConfiguration;
+				buildSettings = {
+					ALWAYS_SEARCH_USER_PATHS = NO;
+					CLANG_ANALYZER_NONNULL = YES;
+					CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+					CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+					CLANG_ENABLE_MODULES = YES;
+					CLANG_ENABLE_OBJC_ARC = YES;
+					CLANG_ENABLE_OBJC_WEAK = YES;
+					CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+					CLANG_WARN_BOOL_CONVERSION = YES;
+					CLANG_WARN_COMMA = YES;
+					CLANG_WARN_CONSTANT_CONVERSION = YES;
+					CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+					CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+					CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+					CLANG_WARN_EMPTY_BODY = YES;
+					CLANG_WARN_ENUM_CONVERSION = YES;
+					CLANG_WARN_INFINITE_RECURSION = YES;
+					CLANG_WARN_INT_CONVERSION = YES;
+					CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+					CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+					CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+					CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+					CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+					CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+					CLANG_WARN_STRICT_PROTOTYPES = YES;
+					CLANG_WARN_SUSPICIOUS_MOVE = YES;
+					CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+					CLANG_WARN_UNREACHABLE_CODE = YES;
+					CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+					COPY_PHASE_STRIP = NO;
+					DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+					ENABLE_NS_ASSERTIONS = NO;
+					ENABLE_STRICT_OBJC_MSGSEND = YES;
+					ENABLE_USER_SCRIPT_SANDBOXING = YES;
+					GCC_C_LANGUAGE_STANDARD = gnu17;
+					GCC_NO_COMMON_BLOCKS = YES;
+					IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+					MTL_ENABLE_DEBUG_INFO = NO;
+					MTL_FAST_MATH = YES;
+					SDKROOT = iphoneos;
+					SWIFT_COMPILATION_MODE = wholemodule;
+					SWIFT_OPTIMIZATION_LEVEL = "-O";
+					SWIFT_VERSION = 5.0;
+					VALIDATE_PRODUCT = YES;
+				};
+			name = Release;
+		};
+		00000000000000000010003D /* Debug */ = {
+			isa = XCBuildConfiguration;
+				buildSettings = {
+					ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+					ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+					CODE_SIGN_STYLE = Automatic;
+					CURRENT_PROJECT_VERSION = 1;
+					ENABLE_PREVIEWS = YES;
+					GENERATE_INFOPLIST_FILE = NO;
+					INFOPLIST_FILE = PayFlowDemo/Info.plist;
+					IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+					LD_RUNPATH_SEARCH_PATHS = ("$(inherited)", "@executable_path/Frameworks");
+					MARKETING_VERSION = 1.0;
+					PRODUCT_BUNDLE_IDENTIFIER = com.example.paydemo;
+					PRODUCT_NAME = "$(TARGET_NAME)";
+					SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+					SWIFT_EMIT_LOC_STRINGS = YES;
+					SWIFT_VERSION = 5.0;
+					TARGETED_DEVICE_FAMILY = 1;
+				};
+			name = Debug;
+		};
+		00000000000000000010003E /* Release */ = {
+			isa = XCBuildConfiguration;
+				buildSettings = {
+					ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+					ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+					CODE_SIGN_STYLE = Automatic;
+					CURRENT_PROJECT_VERSION = 1;
+					ENABLE_PREVIEWS = YES;
+					GENERATE_INFOPLIST_FILE = NO;
+					INFOPLIST_FILE = PayFlowDemo/Info.plist;
+					IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+					LD_RUNPATH_SEARCH_PATHS = ("$(inherited)", "@executable_path/Frameworks");
+					MARKETING_VERSION = 1.0;
+					PRODUCT_BUNDLE_IDENTIFIER = com.example.paydemo;
+					PRODUCT_NAME = "$(TARGET_NAME)";
+					SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+					SWIFT_EMIT_LOC_STRINGS = YES;
+					SWIFT_VERSION = 5.0;
+					TARGETED_DEVICE_FAMILY = 1;
+				};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		00000000000000000010003C /* Build configuration list for PBXProject "PayFlowDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				00000000000000000010003F /* Debug */,
+				000000000000000000100040 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		00000000000000000010003B /* Build configuration list for PBXNativeTarget "PayFlowDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				00000000000000000010003D /* Debug */,
+				00000000000000000010003E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 000000000000000000100037 /* Project object */;
+}
