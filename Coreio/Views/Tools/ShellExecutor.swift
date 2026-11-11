@@ -55,19 +55,58 @@ final class ShellExecutor: ObservableObject {
     static func detect() -> JailbreakStatus {
         let fm = FileManager.default
 
-        let roothidePaths = ["/private/var/roothide", "/var/roothide"]
-        if roothidePaths.contains(where: fm.fileExists) { return .roothide }
+        // 1) RootHide（隐根）：隐藏根目录 .jbroot-XXXX 放在 App 包内或其同级目录，
+        //    这是沙盒内唯一能可靠看见的 roothide 特征。
+        let bundleDirs = [
+            Bundle.main.bundleURL.path,
+            Bundle.main.bundleURL.deletingLastPathComponent().path,
+            "/var/containers/Bundle/Application"
+        ]
+        for dir in bundleDirs {
+            if let items = try? fm.contentsOfDirectory(atPath: dir),
+               items.contains(where: { $0.hasPrefix(".jbroot-") }) {
+                return .roothide
+            }
+        }
 
-        let rootlessPaths = ["/var/jb", "/private/var/jb", "/var/jb/usr/bin"]
-        if rootlessPaths.contains(where: fm.fileExists) { return .rootless }
+        // 2) roothide 其它痕迹
+        let roothidePaths = [
+            "/var/roothide",
+            "/private/var/roothide",
+            "/var/mobile/Library/Preferences/com.roothide.prefs.plist",
+            "/var/mobile/Library/Preferences/com.roothide.prefs",
+            "/var/containers/Bundle/Application/.jbroot"
+        ]
+        if roothidePaths.contains(where: { fm.fileExists(atPath: $0) }) { return .roothide }
 
+        // 3) rootless（Dopamine / palera1n rootless 等）
+        let rootlessPaths = [
+            "/var/jb",
+            "/private/var/jb",
+            "/var/jb/usr/bin",
+            "/var/jb/usr/sbin",
+            "/var/jb/usr/lib/dyld",
+            "/usr/lib/libjailbreak.dylib"
+        ]
+        if rootlessPaths.contains(where: { fm.fileExists(atPath: $0) }) { return .rootless }
+
+        // 4) 传统（非 rootless）越狱痕迹
         let legacyPaths = [
             "/Applications/Cydia.app",
             "/private/var/stash",
             "/private/var/mobile/Library/SBSettings/Themes",
-            "/private/var/mobile/Library/MobileSubstrate"
+            "/private/var/mobile/Library/MobileSubstrate",
+            "/Library/MobileSubstrate/MobileSubstrate.dylib",
+            "/usr/sbin/sshd",
+            "/bin/bash"
         ]
-        if legacyPaths.contains(where: fm.fileExists) { return .rootless }
+        if legacyPaths.contains(where: { fm.fileExists(atPath: $0) }) { return .rootless }
+
+        // 5) 兜底：App 包内存在 jbroot 的软链/marker
+        if let items = try? fm.contentsOfDirectory(atPath: Bundle.main.bundleURL.path),
+           items.contains(where: { $0.hasPrefix(".jbroot") || $0.hasPrefix("jbroot") }) {
+            return .roothide
+        }
 
         return .notJailbroken
     }
