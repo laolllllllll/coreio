@@ -9,14 +9,19 @@ struct DeviceToolsView: View {
     @State private var pendingCommand: String?
     @State private var running = false
     @State private var status: JailbreakStatus = ShellExecutor.detect()
+    @AppStorage(ShellExecutor.forceKey) private var forceShell = false
 
     var body: some View {
         NavigationStack {
             Form {
                 Section("设备状态") {
-                    LabeledContent("越狱环境", value: status.title)
+                    LabeledContent("越狱环境", value: status.isAvailable ? status.title : (forceShell ? "手动启用终端" : status.title))
                     if !status.isAvailable {
                         Text("终端工具仅在越狱（Rootless / Roothide）环境下可用。")
+                            .foregroundColor(.secondary)
+                        Toggle("强制启用终端", isOn: $forceShell)
+                        Text("RootHide 会把隐藏根藏起来，App 沙盒里可能完全看不到 /var/jb。打不开终端就打开这个开关，手动放行（不影响普通自签设备，默认关闭）。")
+                            .font(.caption)
                             .foregroundColor(.secondary)
                     }
                 }
@@ -33,7 +38,7 @@ struct DeviceToolsView: View {
                         .foregroundColor(settings.shellPermission == .allow ? .red : .secondary)
                 }
 
-                if status.isAvailable {
+                if status.isAvailable || forceShell {
                     Section("终端") {
                         TextField("输入命令", text: $command)
                             .autocorrectionDisabled()

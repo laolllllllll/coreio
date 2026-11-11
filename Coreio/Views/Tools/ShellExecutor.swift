@@ -49,6 +49,13 @@ struct ShellLine: Identifiable, Equatable {
 /// 终端命令执行器。
 /// 仅在越狱环境下通过 /bin/sh 执行命令；非越狱环境直接返回不可用错误。
 final class ShellExecutor: ObservableObject {
+    /// RootHide 会把根藏起来，沙盒里的 App 可能完全看不到，用这个开关手动强制启用
+    static let forceKey = "coreio.forceShell"
+
+    static var manualEnabled: Bool {
+        UserDefaults.standard.bool(forKey: forceKey)
+    }
+
     @Published var lines: [ShellLine] = []
 
     /// 检测当前设备越狱类型
@@ -78,6 +85,16 @@ final class ShellExecutor: ObservableObject {
             "/var/containers/Bundle/Application/.jbroot"
         ]
         if roothidePaths.contains(where: { fm.fileExists(atPath: $0) }) { return .roothide }
+
+        // 2.5) RootHide：/var/jb 是软链，fileExists 会跟丢目标而返回 false，
+        //      这里用 lstat 只看链接本身。
+        for p in ["/var/jb", "/private/var/jb"] {
+            var st = stat()
+            if lstat(p, &st) == 0 {
+                if (st.st_mode & S_IFMT) == S_IFLNK { return .roothide }
+                return .rootless
+            }
+        }
 
         // 3) rootless（Dopamine / palera1n rootless 等）
         let rootlessPaths = [
@@ -136,7 +153,7 @@ final class ShellExecutor: ObservableObject {
     /// 执行命令。confirmed 表示用户已在确认弹窗中同意（无需确认的模式忽略该参数）。
     func execute(_ command: String, permission: ShellPermissionMode, confirmed: Bool) async throws -> String {
         let status = Self.detect()
-        guard status.isAvailable else { throw ShellError.notJailbroken }
+        guard status.isAvailable || Self.manualEnabled else { throw ShellError.notJailbroken }
 
         switch permission {
         case .ask:
